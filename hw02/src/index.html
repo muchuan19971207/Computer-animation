@@ -29,7 +29,7 @@
         藉由調整以下的width和height設定來調整canvas寬高
         */
         width: 300px;
-        height: 500px;
+        height: 400px;
         /* 位置 */
         transform: scale(1.2); /* same as plus and minus */
         margin-top: 10%;
@@ -100,7 +100,8 @@
 
       // dont override
       window.addEventListener("load", () => {
-        update(0.5, -0.2, 1);
+        //window update
+        update(0.5, 0, 1);
       });
 
       /*
@@ -152,7 +153,12 @@
       let backgroundFileEL = document.querySelector("#backgroundFile");
 
       backgroundFileEL.addEventListener("change", (e) => {
-        alert("TODO background file change");
+        let files = e.target.files;
+
+        if (files[0]){
+          let imagePath = URL.createObjectURL(files[0]);
+          document.body.style.backgroundImage = `url(${imagePath})`;
+        }
       });
     </script>
   </body>
