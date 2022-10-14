@@ -29,7 +29,7 @@
         藉由調整以下的width和height設定來調整canvas寬高
         */
         width: 300px;
-        height: 400px;
+        height: 500px;
         /* 位置 */
         transform: scale(1.2); /* same as plus and minus */
         margin-top: 10%;
@@ -80,6 +80,9 @@
       <button id="right">右</button>
       <button id="plus">放大+</button>
       <button id="minus">縮小-</button>
+
+      <button id="upup">更新</button>
+
       <div class="background-control">
         <h2>更換背景</h2>
         <div id="backgroundDrag">拖放背景圖片</div>
@@ -100,8 +103,7 @@
 
       // dont override
       window.addEventListener("load", () => {
-        //window update
-        update(0.5, 0, 1);
+        update(0.45, 0, 1);
       });
 
       /*
@@ -154,11 +156,22 @@
 
       backgroundFileEL.addEventListener("change", (e) => {
         let files = e.target.files;
-
         if (files[0]){
           let imagePath = URL.createObjectURL(files[0]);
           document.body.style.backgroundImage = `url(${imagePath})`;
         }
+      });
+
+      document.querySelector("#upup").addEventListener("click", (e) => {
+        let ux = 0.45,
+        uy = 0,
+        uscale = 1;
+        //strong baseline example
+        setInterval(() => {
+          if (ux < 0.8) ux += 0.025;
+          else ux = 0.45;
+          update(ux, uy, uscale);
+        }, 200);
       });
     </script>
   </body>
